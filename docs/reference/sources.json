@@ -1,0 +1,32 @@
+[
+  {
+    "file": "chainwire-brand-plan.md",
+    "sha256": "27c7d0bf40dcf19e99ec220830622c7c16c2647179103e1c061adf88821a767b",
+    "source": "/Users/i4goth/Desktop/CWIRE/chainwire-brand-plan.md",
+    "kind": "source snapshot; not current runtime evidence"
+  },
+  {
+    "file": "chainwire-materials-and-server.md",
+    "sha256": "2209628a60db097ba17bbf69fa23b370aa7dcda7da6e711191a7a59ff05f43bc",
+    "source": "/Users/i4goth/Desktop/CWIRE/chainwire-materials-and-server.md",
+    "kind": "source snapshot; not current runtime evidence"
+  },
+  {
+    "file": "chainwire-images-ocr.md",
+    "sha256": "c4f8a3d2029ef57e4f70d02cbae861fab6872fa7c37af1dfc55406c846cf91ab",
+    "source": "/Users/i4goth/Desktop/CWIRE/chainwire-images-ocr.md",
+    "kind": "source snapshot; not current runtime evidence"
+  },
+  {
+    "file": "chainwire-images-ocr.jsonl",
+    "sha256": "ab1068358781afd735079df1c0537180a611d81ec0d54fba71445d171d515322",
+    "source": "/Users/i4goth/Desktop/CWIRE/chainwire-images-ocr.jsonl",
+    "kind": "source snapshot; not current runtime evidence"
+  },
+  {
+    "file": "chainwire-image-ocr.swift",
+    "sha256": "d0bf98971757ac926c90128c31519cd2e83c0c476eaab5facdb66be10b2c4585",
+    "source": "/Users/i4goth/Desktop/CWIRE/chainwire-image-ocr.swift",
+    "kind": "source snapshot; not current runtime evidence"
+  }
+]

@@ -1,0 +1,951 @@
+{
+  "schema_version": 1,
+  "card": "CW-004a",
+  "scope": "вся криптосфера; список сетей не закрыт",
+  "checked_from": "Mac пользователя, curl, User-Agent 'Mozilla/5.0 ChainwireSourceCheck'",
+  "sources": [
+    {
+      "id": "bitcoincore-news",
+      "name": "Bitcoin Core — новости и релизы",
+      "category": "official_project",
+      "language": "en",
+      "networks": [
+        "bip122:000000000019d6689c085ae165831e93"
+      ],
+      "topics": [
+        "bitcoin",
+        "releases"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://bitcoincore.org/en/rss.xml"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "text/xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "bitcoin-optech",
+      "name": "Bitcoin Optech newsletter",
+      "category": "context_research",
+      "language": "en",
+      "networks": [
+        "bip122:000000000019d6689c085ae165831e93"
+      ],
+      "topics": [
+        "bitcoin",
+        "protocol"
+      ],
+      "endpoint": {
+        "kind": "atom",
+        "url": "https://bitcoinops.org/feed.xml"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "ethereum-blog",
+      "name": "Ethereum Foundation Blog",
+      "category": "official_project",
+      "language": "en",
+      "networks": [
+        "eip155:1"
+      ],
+      "topics": [
+        "ethereum",
+        "upgrades"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://blog.ethereum.org/feed.xml"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "l2beat-scaling",
+      "name": "L2BEAT scaling summary",
+      "category": "data_api",
+      "language": "en",
+      "networks": [
+        "eip155:1"
+      ],
+      "topics": [
+        "l2",
+        "tvs",
+        "risk"
+      ],
+      "endpoint": {
+        "kind": "api",
+        "url": "https://l2beat.com/api/scaling/summary"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/json",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": "Публичный JSON; стабильность API и условия использования не проверены"
+    },
+    {
+      "id": "arbitrum-blog",
+      "name": "Arbitrum blog",
+      "category": "official_project",
+      "language": "en",
+      "networks": [
+        "eip155:42161"
+      ],
+      "topics": [
+        "l2"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://arbitrum.io/blog/rss.xml"
+      },
+      "availability": {
+        "status": "unverified",
+        "http_status": 403,
+        "content_type": "text/html",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": "403 Cloudflare challenge",
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "solana-news",
+      "name": "Solana news",
+      "category": "official_project",
+      "language": "en",
+      "networks": [
+        "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"
+      ],
+      "topics": [
+        "solana"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://solana.com/news/rss.xml"
+      },
+      "availability": {
+        "status": "unverified",
+        "http_status": 429,
+        "content_type": "text/html",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": "429 Too Many Requests при первом запросе",
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "aptos-medium",
+      "name": "Aptos Labs (Medium)",
+      "category": "official_project",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "aptos",
+        "other_l1"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://medium.com/feed/@aptoslabs"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "text/xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": "CAIP-2 id для Aptos не зафиксирован в проекте — networks пусто"
+    },
+    {
+      "id": "sui-blog",
+      "name": "Sui blog",
+      "category": "official_project",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "sui",
+        "other_l1"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://blog.sui.io/rss/"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/rss+xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": "CAIP-2 id для Sui не зафиксирован — networks пусто"
+    },
+    {
+      "id": "cardano-news",
+      "name": "Cardano.org news",
+      "category": "official_project",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "cardano",
+        "other_l1"
+      ],
+      "endpoint": {
+        "kind": "page",
+        "url": "https://cardano.org/news/"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "text/html",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": "Только HTML-страница; RSS не проверялся"
+    },
+    {
+      "id": "sec-press",
+      "name": "U.S. SEC press releases",
+      "category": "regulator",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "regulation",
+        "us"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://www.sec.gov/news/pressreleases.rss"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/rss+xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": "SEC публикует правила fair access (User-Agent, частота) — не сверены"
+    },
+    {
+      "id": "cftc-press",
+      "name": "U.S. CFTC general press releases",
+      "category": "regulator",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "regulation",
+        "us"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://www.cftc.gov/RSS/RSSGP/rssgp.xml"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/rss+xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "esma-news",
+      "name": "ESMA news (EU, MiCA)",
+      "category": "regulator",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "regulation",
+        "eu"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://www.esma.europa.eu/rss.xml"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/rss+xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "cbr-events",
+      "name": "Банк России — события",
+      "category": "regulator",
+      "language": "ru",
+      "networks": [],
+      "topics": [
+        "regulation",
+        "ru"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://www.cbr.ru/rss/eventrss"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/rss+xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "rekt-news",
+      "name": "rekt.news",
+      "category": "security",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "security",
+        "exploits"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://rekt.news/rss/feed.xml"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "defillama-hacks",
+      "name": "DefiLlama hacks API",
+      "category": "security",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "security",
+        "exploits"
+      ],
+      "endpoint": {
+        "kind": "api",
+        "url": "https://api.llama.fi/hacks"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/json",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "defillama-raises",
+      "name": "DefiLlama raises API",
+      "category": "funding",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "funding"
+      ],
+      "endpoint": {
+        "kind": "api",
+        "url": "https://api.llama.fi/raises"
+      },
+      "availability": {
+        "status": "unverified",
+        "http_status": 402,
+        "content_type": "text/plain",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": "402: требуется платный тариф",
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "chainalysis-blog",
+      "name": "Chainalysis blog",
+      "category": "security",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "security",
+        "compliance",
+        "illicit_finance"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://blog.chainalysis.com/feed/"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/rss+xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "theblock",
+      "name": "The Block",
+      "category": "media_context",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "markets",
+        "funding",
+        "policy"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://www.theblock.co/rss.xml"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "text/xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "coindesk",
+      "name": "CoinDesk",
+      "category": "media_context",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "markets",
+        "policy",
+        "all_networks"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://www.coindesk.com/arc/outboundfeeds/rss/"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "cointelegraph-en",
+      "name": "Cointelegraph",
+      "category": "media_context",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "markets",
+        "all_networks"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://cointelegraph.com/rss"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "decrypt",
+      "name": "Decrypt",
+      "category": "media_context",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "markets",
+        "all_networks"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://decrypt.co/feed"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "forklog",
+      "name": "ForkLog",
+      "category": "media_context",
+      "language": "ru",
+      "networks": [],
+      "topics": [
+        "markets",
+        "regulation",
+        "all_networks"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://forklog.com/feed"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/rss+xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "bitsmedia",
+      "name": "Bits.media",
+      "category": "media_context",
+      "language": "ru",
+      "networks": [],
+      "topics": [
+        "markets",
+        "all_networks"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://bits.media/rss2/"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "text/xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "incrypted",
+      "name": "Incrypted",
+      "category": "media_context",
+      "language": "ru",
+      "networks": [],
+      "topics": [
+        "markets",
+        "funding",
+        "all_networks"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://incrypted.com/feed/"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/rss+xml",
+        "checked_at": "2026-10-30T15:43:00Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "beincrypto-ru",
+      "name": "BeInCrypto RU",
+      "category": "media_context",
+      "language": "ru",
+      "networks": [],
+      "topics": [
+        "markets",
+        "all_networks"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://ru.beincrypto.com/feed/"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": null,
+        "checked_at": "2026-10-30T15:43:00Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "kraken-blog",
+      "name": "Kraken blog",
+      "category": "exchange",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "exchange",
+        "listings"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://blog.kraken.com/feed"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "application/rss+xml",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "bybit-announcements",
+      "name": "Bybit announcements",
+      "category": "exchange",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "exchange",
+        "listings"
+      ],
+      "endpoint": {
+        "kind": "page",
+        "url": "https://www.bybit.com/en/announcement-info/"
+      },
+      "availability": {
+        "status": "responded",
+        "http_status": 200,
+        "content_type": "text/html",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": null,
+        "documented": null
+      },
+      "note": "SSR-страница; структура для парсинга не проверена"
+    },
+    {
+      "id": "binance-announcements",
+      "name": "Binance announcements",
+      "category": "exchange",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "exchange",
+        "listings"
+      ],
+      "endpoint": {
+        "kind": "page",
+        "url": "https://www.binance.com/en/support/announcement"
+      },
+      "availability": {
+        "status": "unverified",
+        "http_status": 202,
+        "content_type": "text/html",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": "202 с пустым телом (вероятно, бот-защита)",
+        "documented": null
+      },
+      "note": null
+    },
+    {
+      "id": "coinbase-blog",
+      "name": "Coinbase blog",
+      "category": "exchange",
+      "language": "en",
+      "networks": [],
+      "topics": [
+        "exchange",
+        "listings"
+      ],
+      "endpoint": {
+        "kind": "rss",
+        "url": "https://blog.coinbase.com/feed"
+      },
+      "availability": {
+        "status": "unverified",
+        "http_status": 403,
+        "content_type": "text/html",
+        "checked_at": "2026-10-30T15:41:19Z",
+        "method": "curl -L -m 15 с Mac пользователя"
+      },
+      "terms": {
+        "url": null,
+        "status": "unverified",
+        "reuse_rights": null
+      },
+      "limits": {
+        "observed": "403 Cloudflare challenge",
+        "documented": null
+      },
+      "note": null
+    }
+  ]
+}

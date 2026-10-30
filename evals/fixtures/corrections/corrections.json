@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "card": "CW-001b",
+  "policy": "Отдельный слой исправлений. Оригиналы не переписываются; каждое исправление ссылается на путь и SHA-256 из docs/research/materials-manifest.json. Неизвестное = null / unverified.",
+  "corrections": [
+    {
+      "id": "COR-001",
+      "topic": "amm_constant_product_16jpg",
+      "source": {"path": "telegram-corpus/photos/16.jpg", "sha256": "90af2b426e27d0e5e604f10663d8db7b5571eb4e49ef11d0d40460e173f6520b"},
+      "visual_check": {"status": "visually_checked", "image_text": ["По 0.1$", "2.000.000 токенов", "200к", "~ 1.500.000 токенов", "0.8$", "8 иксов", "4.5-5$"]},
+      "ocr_discrepancies": [
+        {"ocr_path": "docs/reference/chainwire-images-ocr.jsonl", "ocr_sha256": "ab1068358781afd735079df1c0537180a611d81ec0d54fba71445d171d515322", "ocr_text": "По 0.15", "image_text": "По 0.1$"},
+        {"ocr_path": "docs/reference/chainwire-images-ocr.jsonl", "ocr_sha256": "ab1068358781afd735079df1c0537180a611d81ec0d54fba71445d171d515322", "ocr_text": "Залили ликву по 0.15", "image_text": "Залили ликву по 0.1$"},
+        {"ocr_path": "docs/reference/chainwire-images-ocr.jsonl", "ocr_sha256": "ab1068358781afd735079df1c0537180a611d81ec0d54fba71445d171d515322", "ocr_text": "4.5-55", "image_text": "4.5-5$"}
+      ],
+      "claim_in_source": {"tokens_out": 1500000, "final_price_usd": 0.8, "multiple": 8},
+      "inputs": {"pool_tokens": 2000000, "pool_quote_usd": 200000, "buy_usd": 200000, "fee": 0},
+      "corrected": {"tokens_out": 1000000, "pool_tokens_after": 1000000, "pool_quote_after_usd": 400000, "final_price_usd": 0.4, "initial_price_usd": 0.1, "multiple": 4},
+      "model": "constant product x*y=k, без комиссий; комиссии и другие модели AMM не учтены",
+      "status": "verified_arithmetic"
+    },
+    {
+      "id": "COR-002",
+      "topic": "circulating_supply_growth",
+      "source": {"path": "research-bot/data/kb/article_05.txt", "sha256": "34b4d89c00b08f6af2b4a6e2017a93cedfd0cbe1c255f044a7c35c8e29d412a2"},
+      "claim_in_source": {"quote": "предложение увеличится на 60%", "growth_percent": 60},
+      "inputs": {"circulating_share_percent": 40, "target_share_percent": 100},
+      "corrected": {"growth_percent": 150, "percentage_points": 60},
+      "status": "verified_arithmetic"
+    },
+    {
+      "id": "COR-003",
+      "topic": "layerzero_wallets_94jpg",
+      "source": {"path": "telegram-corpus/photos/94.jpg", "sha256": "3d9d4c44f7f98c350027b614cdd149fccc722a08158d97e2e3e29bc4ba1477cf"},
+      "visual_check": {"status": "visually_checked", "image_text": ["Из 660к кошельков лишь 66к сделали объем больше 20 баксов", "(после сен. 2024)", "Выделено было 25%", "L0"]},
+      "ocr_discrepancies": [
+        {"ocr_path": "docs/reference/chainwire-images-ocr.jsonl", "ocr_sha256": "ab1068358781afd735079df1c0537180a611d81ec0d54fba71445d171d515322", "ocr_text": "Выделено было 256", "image_text": "Выделено было 25%"},
+        {"ocr_path": "docs/reference/chainwire-images-ocr.jsonl", "ocr_sha256": "ab1068358781afd735079df1c0537180a611d81ec0d54fba71445d171d515322", "ocr_text": "LO", "image_text": "L0"}
+      ],
+      "ocr_preserves": {"ocr_path": "docs/reference/chainwire-images-ocr.jsonl", "quote": "Из 660к кошельков лишь 66к сделали объем больше 20 баксов"},
+      "distorted_copy": {"path": "research-bot/data/kb/screenshots_notes.md", "sha256": "8b411fe4de8b4c7687607139a403cd743416cd59afda77596603a2025bcfa8b4", "quote": "Из 600k кошельков только 6k сделали >20 транз"},
+      "corrected": {"wallets_total": 660000, "wallets_qualified": 66000, "threshold": {"metric": "volume_usd", "gt": 20}, "period_note": "после сен. 2024"},
+      "status": "visually_checked"
+    },
+    {
+      "id": "COR-004",
+      "topic": "layerzero_2026_date",
+      "source": {"path": "research-bot/data/kb/screenshots_notes.md", "sha256": "8b411fe4de8b4c7687607139a403cd743416cd59afda77596603a2025bcfa8b4"},
+      "claim_in_source": {"quote": "LayerZero 3.06.2026 официально: новых дропов нет."},
+      "confirmed_date": null,
+      "primary_source": null,
+      "status": "unverified",
+      "note": "В прочитанных исходных скриншотах (включая 94.jpg) утверждение не найдено; первоисточник не установлен. Не использовать как подтверждённый факт."
+    }
+  ]
+}

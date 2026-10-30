@@ -1,0 +1,823 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chainwire.local/schemas/chainwire.v1.schema.json",
+  "title": "Chainwire v1 contract bundle",
+  "description": "Separate source/event/evidence/project/assessment/fact pack/article revision/locale/delivery entities. null means unknown, never zero/false/empty.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "chainwire.v1"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Source"
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Event"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Project"
+      }
+    },
+    "assessments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Assessment"
+      }
+    },
+    "fact_packs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FactPack"
+      }
+    },
+    "revisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ArticleRevision"
+      }
+    },
+    "locales": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/LocaleVersion"
+      }
+    },
+    "deliveries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Delivery"
+      }
+    }
+  },
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "Ids": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Id"
+      },
+      "uniqueItems": true
+    },
+    "NonemptyIds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Id"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "Text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "OptText": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "Url": {
+      "type": "string",
+      "pattern": "^https?://[^\\s]+$"
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "OptTimestamp": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "Score": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "Locale": {
+      "description": "BCP 47 language tag; ru and en are mandatory for publication, others may be added.",
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Z][a-z]{3})?(-[A-Z]{2})?$"
+    },
+    "NetworkId": {
+      "description": "CAIP-2 chain id namespace:reference (eip155:1, solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp, bip122:000000000019d6689c085ae165831e93, cosmos:cosmoshub-4). Not an enum: any chain may be added without schema change.",
+      "type": "string",
+      "pattern": "^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,32}$"
+    },
+    "Source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "url",
+        "publisher",
+        "source_kind",
+        "content_sha256",
+        "retrieved_at",
+        "published_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "url": {
+          "$ref": "#/$defs/Url"
+        },
+        "publisher": {
+          "$ref": "#/$defs/Text"
+        },
+        "source_kind": {
+          "enum": [
+            "primary",
+            "secondary"
+          ]
+        },
+        "language": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Locale"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "external_id": {
+          "$ref": "#/$defs/OptText"
+        },
+        "content_sha256": {
+          "$ref": "#/$defs/Digest"
+        },
+        "retrieved_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "published_at": {
+          "$ref": "#/$defs/OptTimestamp"
+        }
+      }
+    },
+    "NetworkAddress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "network",
+        "address"
+      ],
+      "properties": {
+        "network": {
+          "$ref": "#/$defs/NetworkId"
+        },
+        "address": {
+          "$ref": "#/$defs/Text"
+        },
+        "role": {
+          "$ref": "#/$defs/OptText"
+        }
+      }
+    },
+    "Project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "networks",
+        "addresses"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "name": {
+          "$ref": "#/$defs/Text"
+        },
+        "official_url": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Url"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "category": {
+          "$ref": "#/$defs/OptText"
+        },
+        "ecosystems": {
+          "description": "Open tags (ethereum, solana, bitcoin, cosmos, ton, ...).",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "uniqueItems": true
+        },
+        "networks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/NetworkId"
+          },
+          "uniqueItems": true
+        },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/NetworkAddress"
+          },
+          "uniqueItems": true
+        },
+        "source_ids": {
+          "$ref": "#/$defs/Ids"
+        }
+      }
+    },
+    "Event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "event_type",
+        "source_ids",
+        "detected_at",
+        "occurred_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "event_type": {
+          "$ref": "#/$defs/Id"
+        },
+        "source_ids": {
+          "$ref": "#/$defs/NonemptyIds"
+        },
+        "project_ids": {
+          "$ref": "#/$defs/Ids"
+        },
+        "networks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/NetworkId"
+          },
+          "uniqueItems": true
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/OptTimestamp"
+        },
+        "detected_at": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      }
+    },
+    "Evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "event_id",
+        "source_id",
+        "claim",
+        "locator",
+        "status",
+        "checked_by",
+        "checked_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "event_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "source_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "claim": {
+          "$ref": "#/$defs/Text"
+        },
+        "locator": {
+          "$ref": "#/$defs/Text"
+        },
+        "status": {
+          "enum": [
+            "unverified",
+            "verified",
+            "rejected"
+          ]
+        },
+        "checked_by": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "checked_at": {
+          "$ref": "#/$defs/OptTimestamp"
+        }
+      }
+    },
+    "Assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "project_id",
+        "evidence_ids",
+        "assessed_at",
+        "methodology_version",
+        "quality",
+        "risk",
+        "completeness",
+        "urgency",
+        "rationale"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "project_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/NonemptyIds"
+        },
+        "assessed_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "methodology_version": {
+          "$ref": "#/$defs/Id"
+        },
+        "model_version": {
+          "$ref": "#/$defs/OptText"
+        },
+        "prompt_version": {
+          "$ref": "#/$defs/OptText"
+        },
+        "quality": {
+          "$ref": "#/$defs/Score"
+        },
+        "risk": {
+          "enum": [
+            "low",
+            "moderate",
+            "high",
+            "critical",
+            null
+          ]
+        },
+        "completeness": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "urgency": {
+          "enum": [
+            "routine",
+            "time_sensitive",
+            "urgent",
+            null
+          ]
+        },
+        "rationale": {
+          "$ref": "#/$defs/Text"
+        }
+      }
+    },
+    "FactValue": {
+      "description": "kind determines the value type",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ],
+          "properties": {
+            "kind": {
+              "const": "text"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ],
+          "properties": {
+            "kind": {
+              "const": "integer"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ],
+          "properties": {
+            "kind": {
+              "const": "decimal"
+            },
+            "value": {
+              "type": "string",
+              "pattern": "^-?\\d+(\\.\\d+)?$"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ],
+          "properties": {
+            "kind": {
+              "const": "boolean"
+            },
+            "value": {
+              "type": "boolean"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ],
+          "properties": {
+            "kind": {
+              "const": "timestamp"
+            },
+            "value": {
+              "$ref": "#/$defs/Timestamp"
+            }
+          }
+        }
+      ]
+    },
+    "Fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "value",
+        "evidence_ids"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "value": {
+          "description": "null = unknown",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FactValue"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "$ref": "#/$defs/OptText"
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/NonemptyIds"
+        }
+      }
+    },
+    "FactPack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "event_id",
+        "created_at",
+        "facts"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "event_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "project_ids": {
+          "$ref": "#/$defs/Ids"
+        },
+        "assessment_ids": {
+          "$ref": "#/$defs/Ids"
+        },
+        "created_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "facts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Fact"
+          }
+        }
+      }
+    },
+    "ArticleRevision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "article_id",
+        "revision",
+        "supersedes_id",
+        "fact_pack_id",
+        "created_at",
+        "status",
+        "approved_by",
+        "approved_at"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "article_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "supersedes_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "change_reason": {
+          "$ref": "#/$defs/OptText"
+        },
+        "fact_pack_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "created_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "approved"
+          ]
+        },
+        "approved_by": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "approved_at": {
+          "$ref": "#/$defs/OptTimestamp"
+        }
+      }
+    },
+    "LocaleVersion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision_id",
+        "locale",
+        "fact_pack_id",
+        "fact_ids",
+        "title",
+        "summary",
+        "body",
+        "created_at",
+        "review_status",
+        "reviewed_by",
+        "reviewed_at"
+      ],
+      "properties": {
+        "revision_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "locale": {
+          "$ref": "#/$defs/Locale"
+        },
+        "fact_pack_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "fact_ids": {
+          "$ref": "#/$defs/Ids"
+        },
+        "title": {
+          "$ref": "#/$defs/Text"
+        },
+        "summary": {
+          "$ref": "#/$defs/Text"
+        },
+        "body": {
+          "$ref": "#/$defs/Text"
+        },
+        "created_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "review_status": {
+          "enum": [
+            "draft",
+            "approved"
+          ]
+        },
+        "reviewed_by": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reviewed_at": {
+          "$ref": "#/$defs/OptTimestamp"
+        }
+      }
+    },
+    "Reconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "checked_by",
+        "checked_at",
+        "proof"
+      ],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "delivered",
+            "not_delivered"
+          ]
+        },
+        "checked_by": {
+          "$ref": "#/$defs/Id"
+        },
+        "checked_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "proof": {
+          "$ref": "#/$defs/Text"
+        }
+      }
+    },
+    "Delivery": {
+      "description": "One row per revision x locale x destination. idempotency_key = sha256(JSON [revision_id, locale, destination], compact, UTF-8).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "revision_id",
+        "locale",
+        "destination",
+        "idempotency_key",
+        "state",
+        "attempts",
+        "created_at",
+        "updated_at",
+        "available_at",
+        "lease_owner",
+        "lease_until",
+        "external_receipt",
+        "last_error",
+        "reconciliation"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "revision_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "locale": {
+          "$ref": "#/$defs/Locale"
+        },
+        "destination": {
+          "description": "Open id kind:target, e.g. telegram:channel_ru, telegraph:article, web:site.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{1,31}:[^\\s]{1,128}$"
+        },
+        "idempotency_key": {
+          "$ref": "#/$defs/Digest"
+        },
+        "state": {
+          "enum": [
+            "pending",
+            "leased",
+            "succeeded",
+            "retryable",
+            "uncertain"
+          ]
+        },
+        "attempts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "created_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "updated_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "available_at": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "lease_owner": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lease_until": {
+          "$ref": "#/$defs/OptTimestamp"
+        },
+        "external_receipt": {
+          "$ref": "#/$defs/OptText"
+        },
+        "last_error": {
+          "$ref": "#/$defs/OptText"
+        },
+        "reconciliation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reconciliation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "schema_version": "chainwire.v1",
+  "sources": [
+    {
+      "id": "src-1",
+      "url": "https://blog.example-dex.io/launch",
+      "publisher": "Example DEX",
+      "source_kind": "primary",
+      "language": "en",
+      "external_id": null,
+      "content_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "retrieved_at": "2026-10-30T10:00:00Z",
+      "published_at": "2026-10-30T09:30:00Z"
+    },
+    {
+      "id": "src-2",
+      "url": "https://t.me/s/example_news/123",
+      "publisher": "Example News",
+      "source_kind": "secondary",
+      "language": "ru",
+      "external_id": "123",
+      "content_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "retrieved_at": "2026-10-30T10:01:00Z",
+      "published_at": null
+    }
+  ],
+  "events": [
+    {
+      "id": "evt-1",
+      "event_type": "token_launch",
+      "source_ids": [
+        "src-1",
+        "src-2"
+      ],
+      "project_ids": [
+        "proj-exdex"
+      ],
+      "networks": [
+        "eip155:1",
+        "ton:mainnet"
+      ],
+      "occurred_at": null,
+      "detected_at": "2026-10-30T10:02:00Z"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evd-1",
+      "event_id": "evt-1",
+      "source_id": "src-1",
+      "claim": "Total supply is 1,000,000 tokens",
+      "locator": "paragraph 2",
+      "status": "verified",
+      "checked_by": "editor-1",
+      "checked_at": "2026-10-30T10:10:00Z"
+    },
+    {
+      "id": "evd-2",
+      "event_id": "evt-1",
+      "source_id": "src-2",
+      "claim": "Liquidity not disclosed",
+      "locator": "message 123",
+      "status": "verified",
+      "checked_by": "editor-1",
+      "checked_at": "2026-10-30T10:11:00Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-exdex",
+      "name": "Example DEX",
+      "official_url": "https://example-dex.io",
+      "category": null,
+      "ecosystems": [
+        "ethereum",
+        "ton",
+        "cosmos"
+      ],
+      "networks": [
+        "eip155:1",
+        "eip155:8453",
+        "ton:mainnet",
+        "cosmos:osmosis-1"
+      ],
+      "addresses": [
+        {
+          "network": "eip155:1",
+          "address": "0x0000000000000000000000000000000000000001",
+          "role": "token"
+        },
+        {
+          "network": "ton:mainnet",
+          "address": "EQexampleTonAddress",
+          "role": null
+        }
+      ],
+      "source_ids": [
+        "src-1"
+      ]
+    }
+  ],
+  "assessments": [
+    {
+      "id": "asm-1",
+      "project_id": "proj-exdex",
+      "evidence_ids": [
+        "evd-1",
+        "evd-2"
+      ],
+      "assessed_at": "2026-10-30T10:12:00Z",
+      "methodology_version": "method-0",
+      "model_version": null,
+      "prompt_version": null,
+      "quality": null,
+      "risk": null,
+      "completeness": 40,
+      "urgency": "time_sensitive",
+      "rationale": "Liquidity and authority unknown; risk not assessed."
+    }
+  ],
+  "fact_packs": [
+    {
+      "id": "fp-1",
+      "event_id": "evt-1",
+      "project_ids": [
+        "proj-exdex"
+      ],
+      "assessment_ids": [
+        "asm-1"
+      ],
+      "created_at": "2026-10-30T10:13:00Z",
+      "facts": [
+        {
+          "id": "f-supply",
+          "value": {
+            "kind": "integer",
+            "value": 1000000
+          },
+          "unit": "token",
+          "evidence_ids": [
+            "evd-1"
+          ]
+        },
+        {
+          "id": "f-liquidity",
+          "value": null,
+          "unit": "USD",
+          "evidence_ids": [
+            "evd-2"
+          ]
+        }
+      ]
+    }
+  ],
+  "revisions": [
+    {
+      "id": "rev-1",
+      "article_id": "art-1",
+      "revision": 1,
+      "supersedes_id": null,
+      "change_reason": null,
+      "fact_pack_id": "fp-1",
+      "created_at": "2026-10-30T10:14:00Z",
+      "status": "approved",
+      "approved_by": "editor-1",
+      "approved_at": "2026-10-30T10:20:00Z"
+    }
+  ],
+  "locales": [
+    {
+      "revision_id": "rev-1",
+      "locale": "ru",
+      "fact_pack_id": "fp-1",
+      "fact_ids": [
+        "f-supply",
+        "f-liquidity"
+      ],
+      "title": "Example DEX запускает токен в Ethereum и TON",
+      "summary": "Эмиссия 1 000 000 токенов; ликвидность неизвестна.",
+      "body": "Проект Example DEX объявил запуск токена. Общая эмиссия — 1 000 000. Данные о ликвидности не раскрыты.",
+      "created_at": "2026-10-30T10:15:00Z",
+      "review_status": "approved",
+      "reviewed_by": "editor-ru",
+      "reviewed_at": "2026-10-30T10:18:00Z"
+    },
+    {
+      "revision_id": "rev-1",
+      "locale": "en",
+      "fact_pack_id": "fp-1",
+      "fact_ids": [
+        "f-supply",
+        "f-liquidity"
+      ],
+      "title": "Example DEX launches a token on Ethereum and TON",
+      "summary": "Supply of 1,000,000 tokens; liquidity unknown.",
+      "body": "Example DEX announced a token launch. Total supply is 1,000,000. Liquidity has not been disclosed.",
+      "created_at": "2026-10-30T10:15:00Z",
+      "review_status": "approved",
+      "reviewed_by": "editor-en",
+      "reviewed_at": "2026-10-30T10:19:00Z"
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "dlv-ru-tg",
+      "revision_id": "rev-1",
+      "locale": "ru",
+      "destination": "telegram:channel_ru",
+      "idempotency_key": "3ab3b63701909bf9a8c40a13e01c6d929269b94c4a45bb97562b94c8930c1647",
+      "state": "succeeded",
+      "attempts": 1,
+      "created_at": "2026-10-30T10:21:00Z",
+      "updated_at": "2026-10-30T10:22:00Z",
+      "available_at": "2026-10-30T10:21:00Z",
+      "lease_owner": null,
+      "lease_until": null,
+      "external_receipt": "message_id=501",
+      "last_error": null,
+      "reconciliation": null
+    },
+    {
+      "id": "dlv-en-tg",
+      "revision_id": "rev-1",
+      "locale": "en",
+      "destination": "telegram:channel_en",
+      "idempotency_key": "4480684ce2fb481a16741fef2c554c8b15256fe8d079de468919d67a5170c03c",
+      "state": "retryable",
+      "attempts": 1,
+      "created_at": "2026-10-30T10:21:00Z",
+      "updated_at": "2026-10-30T10:22:00Z",
+      "available_at": "2026-10-30T10:30:00Z",
+      "lease_owner": null,
+      "lease_until": null,
+      "external_receipt": null,
+      "last_error": "HTTP 429 before send; confirmed not delivered",
+      "reconciliation": null
+    },
+    {
+      "id": "dlv-ru-tgph",
+      "revision_id": "rev-1",
+      "locale": "ru",
+      "destination": "telegraph:article",
+      "idempotency_key": "5ce4d597c3fd777680eda27d70db5752a994de839de73a5fd39e8276c11e6ec1",
+      "state": "uncertain",
+      "attempts": 1,
+      "created_at": "2026-10-30T10:21:00Z",
+      "updated_at": "2026-10-30T10:22:00Z",
+      "available_at": "2026-10-30T10:21:00Z",
+      "lease_owner": null,
+      "lease_until": null,
+      "external_receipt": null,
+      "last_error": "timeout after request sent; remote outcome unconfirmed",
+      "reconciliation": null
+    },
+    {
+      "id": "dlv-en-tgph",
+      "revision_id": "rev-1",
+      "locale": "en",
+      "destination": "telegraph:article",
+      "idempotency_key": "76e25886cbae617338c56a38e039204531be9e1ccccf88c63375535b10751414",
+      "state": "leased",
+      "attempts": 1,
+      "created_at": "2026-10-30T10:21:00Z",
+      "updated_at": "2026-10-30T10:22:00Z",
+      "available_at": "2026-10-30T10:21:00Z",
+      "lease_owner": "worker-1",
+      "lease_until": "2026-10-30T10:23:00Z",
+      "external_receipt": null,
+      "last_error": null,
+      "reconciliation": null
+    },
+    {
+      "id": "dlv-en-web",
+      "revision_id": "rev-1",
+      "locale": "en",
+      "destination": "web:site",
+      "idempotency_key": "9e67c8eafa2a2c7ba019283b724433f841e1a6a0fa8fcac2f66e5621e537c683",
+      "state": "pending",
+      "attempts": 0,
+      "created_at": "2026-10-30T10:21:00Z",
+      "updated_at": "2026-10-30T10:21:00Z",
+      "available_at": "2026-10-30T10:21:00Z",
+      "lease_owner": null,
+      "lease_until": null,
+      "external_receipt": null,
+      "last_error": null,
+      "reconciliation": null
+    }
+  ]
+}
